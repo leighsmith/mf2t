@@ -8,11 +8,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifdef __linux__
-#include <unistd.h>
-#elif _WIN32
+#if _WIN32
 #include <io.h>
 #include "getopt.h"
+#else
+#include <unistd.h>
 #endif
 #include <errno.h>
 #include <ctype.h>
@@ -48,7 +48,7 @@ static void checkchan();
 static void checknote();
 static void checkval();
 static void splitval();
-static void get16val();
+static void get16val(char *);
 static void checkcon();
 static void checkprog();
 static void checkeol();
@@ -143,7 +143,8 @@ static void checkchan()
 
 static void checknote()
 {
-    int c;
+    int c = 0;
+    
     if (yylex() != NOTE || ((c=yylex()) != INT && c != NOTEVAL))
         syntax();
     if (c == NOTEVAL) {
@@ -197,7 +198,7 @@ static void splitval()
     data[1] = yyval/128;
 }
 
-static void get16val()
+static void get16val(char *mess)
 {
     if (yylex() != VAL || yylex() != INT) syntax();
     if (yyval < 0 || yyval > 65535)

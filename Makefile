@@ -1,9 +1,10 @@
-CFLAGS = -Wall -O2 -pipe -I$(HOME)/include
-LDFLAGS = -s -Wl,-rpath,$(HOME)/lib
-LIBS = -L$(HOME)/lib -lmidifile
+PREFIX = $(HOME)
+CFLAGS = -Wall -O2 -pipe -I $(PREFIX)/include
+LDFLAGS = -Wl,-rpath,$(PREFIX)/lib
+LIBS = -L $(PREFIX)/lib -lmidifile
 INSTALL = install
 
-BINDIR = $(HOME)/bin
+BINDIR = $(PREFIX)/bin
 
 MF2TPROG = mf2t
 MF2TOBJS = mf2t.o

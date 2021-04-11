@@ -8,11 +8,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifdef __linux__
-#include <unistd.h>
-#elif _WIN32
+#if _WIN32
 #include <io.h>
 #include "getopt.h"
+#else
+#include <unistd.h>
 #endif
 #include <errno.h>
 #include "midifile.h"

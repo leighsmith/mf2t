@@ -5,8 +5,8 @@ project(mf2t
 	LANGUAGES C CXX)
 
 set(libmidifile_SOURCES
-	libmidifile-20150710/midifile.c
-	libmidifile-20150710/midifile.h
+	libmidifile/midifile.c
+	libmidifile/midifile.h
 )
 
 set(mf2t_SOURCES
